@@ -15,6 +15,7 @@
 ::debug::param: timeout = ""
 ::debug::param: repository = ""
 ::debug::param: atomic = "true"
+::debug::param: debug = "false"
 ::debug::env: KUBECONFIG="undefined"
 ::debug::rendering value files [./values.yml] with: {"secrets":{"secret":"val"}}
 [command]helm3 upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --values=./values.yml --atomic

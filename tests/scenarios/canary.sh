@@ -8,4 +8,5 @@ INPUT_RELEASE=app \
 INPUT_VERSION=1234 \
 INPUT_TRACK=canary \
 INPUT_VALUES='{"replicaCount": 1, "image": {"repository": "nginx", "tag": "latest"}}' \
+INPUT_DEBUG=true \
 node ../index.js
