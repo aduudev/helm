@@ -170,6 +170,7 @@ async function run() {
     const dryRun = core.getInput("dry-run");
     const secrets = getSecrets(core.getInput("secrets"));
     const atomic = getInput("atomic") || true;
+    const debug = getInput("debug") || "false";
 
     core.debug(`param: track = "${track}"`);
     core.debug(`param: release = "${release}"`);
@@ -187,6 +188,7 @@ async function run() {
     core.debug(`param: timeout = "${timeout}"`);
     core.debug(`param: repository = "${repository}"`);
     core.debug(`param: atomic = "${atomic}"`);
+    core.debug(`param: debug = "${debug}"`);
 
 
     // Setup command options and arguments.
@@ -201,11 +203,11 @@ async function run() {
 
     // Per https://helm.sh/docs/faq/#xdg-base-directory-support
     if (helm === "helm3") {
-      process.env.XDG_DATA_HOME = "/root/.helm/"
-      process.env.XDG_CACHE_HOME = "/root/.helm/"
-      process.env.XDG_CONFIG_HOME = "/root/.helm/"
+      process.env.XDG_DATA_HOME = "/root/.helm/";
+      process.env.XDG_CACHE_HOME = "/root/.helm/";
+      process.env.XDG_CONFIG_HOME = "/root/.helm/";
     } else {
-      process.env.HELM_HOME = "/root/.helm/"
+      process.env.HELM_HOME = "/root/.helm/";
     }
 
     if (dryRun) args.push("--dry-run");
@@ -227,6 +229,10 @@ async function run() {
     // If true upgrade process rolls back changes made in case of failed upgrade.
     if (atomic === true) {
       args.push("--atomic");
+    }
+
+    if (debug  === 'true') {
+      args.push("--debug");
     }
 
     // Setup necessary files.

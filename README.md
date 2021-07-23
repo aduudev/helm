@@ -36,6 +36,7 @@ payload if the action was triggered by a deployment.
 - `timeout`: specify a timeout for helm deployment
 - `repository`: specify the URL for a helm repo to come from
 - `atomic`: If true, upgrade process rolls back changes made in case of failed upgrade. Defaults to true.
+- `debug`: If true, --debug will be added to helm calls. Defaults to false.
 
 Additional parameters: If the action is being triggered by a deployment event
 and the `task` parameter in the deployment event is set to `"remove"` then this
@@ -44,7 +45,7 @@ action will execute a `helm delete $service`
 #### Versions
 
 - `helm`: v2.16.1
-- `helm3`: v3.0.0
+- `helm3`: v3.6.3
 
 ### Environment
 
